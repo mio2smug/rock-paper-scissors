@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+            //bottom range of RNG
+                const  minimumValue = 1;
+            //upper range of RNG
+                const maximumValue = 3;
+            //
+                let rounds = 5;
+            // Variables to hold computer and user choices
+                let computerChoice = "";
+                let userChoice = "";
+            
+            goNRounds(rounds);
+            
+
+            //Goes rounds number of rounds.
+            function goNRounds(rounds){
+                if (rounds == 0){
+                    return 1;
+                }else{
+                    getuserChoice();
+                    getcomputerChoice(minimumValue, maximumValue);
+                    determineResults(computerChoice,  userChoice);
+                    return goNRounds(rounds - 1);
+                }
+            }
+
+            //function that will return the user's choice
+            function getuserChoice(){
+                userChoice = prompt("What is your choice? Rock, Paper, Scissors?");
+                userChoice = userChoice.toLowerCase();
+                return userChoice;
+            }
+            
+            //function that will return the computer's choise
+            function getcomputerChoice(minimumValue, maximumValue){
+                //declare variable that will hold the computer's choice in int form
+                let computerChoiceInt = Math.floor(Math.random() * (maximumValue - minimumValue + 1) + minimumValue);
+                //if elseif block that defines what int actually means
+                if (computerChoiceInt == 1) {
+                            computerChoice = "rock";
+                } else if (computerChoiceInt == 2){
+                            computerChoice = "paper"
+                }else{
+                            computerChoice = "scissors"
+                }   
+            }
+
+
+            //Function that determines the results
+            function determineResults(computerChoice, userChoice){
+                if (computerChoice == userChoice){
+                    console.log("The game is tied");
+                }else if (computerChoice == "rock" && userChoice == "paper"){
+                    console.log("Computer chose Rock. Rock DOES NOT beat paper. You won")
+                }else if (computerChoice == "rock" && userChoice == "scissors"){
+                    console.log("Computer chose Rock. Rock beats scissors. You lose");              
+                }else if (computerChoice == "paper" && userChoice == "rock"){
+                    console.log("Computer chose Paper. Paper beats Rock. You lose");
+                }else if (computerChoice == "paper" && userChoice == "scissors"){
+                    console.log("Computer chose Paper. Paper DOES NOT beat Scissors. You won");
+                }else if (computerChoice == "scissors" && userChoice == "paper"){
+                    console.log("Computer chose Scissors. Scissors beats paper. You lose.");
+                }else if (computerChoice == "scissors" && userChoice == "rock"){
+                    console.log("Computer chose Scissors. Scissors DOES NOT beat rock. You won!");
+                }else{
+                    console.log("You input something that wasn't rock, paper, or scissors. Didn't you?");
+                }
+            }
+    </script>
+</body>
+</html>
