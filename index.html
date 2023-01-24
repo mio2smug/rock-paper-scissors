@@ -15,7 +15,7 @@
 </div>
 
 <div class="results">
-    <h4 id ="scoreline">X wins</h4>
+    <h4 id ="scoreline"></h4>
 </div>
 
 
@@ -63,17 +63,18 @@
 
             function pointChecker(computerWins, userWins){
                 if (computerWins < 5 && userWins < 5){
+                    scoreLine.textContent = "Computer wins: " + computerWins + " User wins: " + userWins;  
                     return 0;
                 } else if (computerWins === 5){
                     scissorsButton.disabled = true;
                     rockButton.disabled = true;
                     paperButton.disabled = true;
-                    console.log("Computer wins");
+                    alert("Computer wins");
                 }else 
-                    console.log ("User wins");
                     scissorsButton.disabled = true;
                     rockButton.disabled = true;
                     paperButton.disabled = true;
+                    alert("User wins");
             }
 
             //function that will return the computer's choise
