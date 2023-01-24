@@ -9,51 +9,73 @@
 </head>
 
 <div class = "player-selection">
-    <button>Rock</button>
-    <button>Paper</button>
-    <button>Scissors</button>
+    <button id="rock-button">Rock</button>
+    <button id="paper-button">Paper</button>
+    <button id="scissors-button">Scissors</button>
 </div>
 
-<div class="result-of-round">
-    <h4>X wins</h1>
+<div class="results">
+    <h4 id ="scoreline">X wins</h4>
 </div>
 
 
-<body>
-    <script>
-        /*
-            //bottom range of RNG
-                const  minimumValue = 1;
-            //upper range of RNG
-                const maximumValue = 3;
-            //
-                let rounds = 5;
-            // Variables to hold computer and user choices
-                let computerChoice = "";
-                let userChoice = "";
-            
-            goNRounds(rounds);
-            
+<body>            
+    <script>      
+    
+        //variable declaration
+        //lower range of RNG
+        const  minimumValue = 1;
+        //upper range of RNG
+        const maximumValue = 3;
+        //holds userchoice & computerchoice
+        let userChoice = "";
+        let computerChoice = "";
+        let userWins=0;
+        let computerWins = 0;
+        //assigns JS variable to appropriate html id
+        const rockButton = document.querySelector('#rock-button');
+        const paperButton = document.querySelector('#paper-button')
+        const scissorsButton = document.querySelector('#scissors-button');
+        const scoreLine = document.querySelector('#scoreline');
 
-            //Goes rounds number of rounds.
-            function goNRounds(rounds){
-                if (rounds == 0){
-                    return 1;
-                }else{
-                    getuserChoice();
-                    getcomputerChoice(minimumValue, maximumValue);
-                    determineResults(computerChoice,  userChoice);
-                    return goNRounds(rounds - 1);
-                }
+        //rock button event listener
+            rockButton.addEventListener('click', function(){
+                userChoice = "rock";
+                getcomputerChoice(minimumValue, maximumValue);
+                determineResults(computerChoice, userChoice);
+                pointChecker(computerWins,  userWins);
+                console.log(computerWins);
+            });
+        //paper button event listener
+            paperButton.addEventListener('click', function(){
+                userChoice = "paper";
+                getcomputerChoice(minimumValue, maximumValue);
+                determineResults(computerChoice, userChoice);
+                pointChecker(computerWins,  userWins);
+            });
+        //scissor button event listener
+            scissorsButton.addEventListener('click', function(){
+                userChoice = "scissors";
+                getcomputerChoice(minimumValue, maximumValue);
+                determineResults(computerChoice, userChoice);
+                pointChecker(computerWins,  userWins);
+            });
+
+            function pointChecker(computerWins, userWins){
+                if (computerWins < 5 && userWins < 5){
+                    return 0;
+                } else if (computerWins === 5){
+                    scissorsButton.disabled = true;
+                    rockButton.disabled = true;
+                    paperButton.disabled = true;
+                    console.log("Computer wins");
+                }else 
+                    console.log ("User wins");
+                    scissorsButton.disabled = true;
+                    rockButton.disabled = true;
+                    paperButton.disabled = true;
             }
 
-            //function that will return the user's choice
-            function getuserChoice(){
-                userChoice = prompt("What is your choice? Rock, Paper, Scissors?");
-                userChoice = userChoice.toLowerCase();
-                return userChoice;
-            }
-            
             //function that will return the computer's choise
             function getcomputerChoice(minimumValue, maximumValue){
                 //declare variable that will hold the computer's choice in int form
@@ -66,30 +88,33 @@
                 }else{
                             computerChoice = "scissors"
                 }   
-            }
+                }
 
-
-            //Function that determines the results
             function determineResults(computerChoice, userChoice){
                 if (computerChoice == userChoice){
                     console.log("The game is tied");
                 }else if (computerChoice == "rock" && userChoice == "paper"){
                     console.log("Computer chose Rock. Rock DOES NOT beat paper. You won")
+                    userWins++;
                 }else if (computerChoice == "rock" && userChoice == "scissors"){
-                    console.log("Computer chose Rock. Rock beats scissors. You lose");              
+                    console.log("Computer chose Rock. Rock beats scissors. You lose");
+                    computerWins++;
                 }else if (computerChoice == "paper" && userChoice == "rock"){
                     console.log("Computer chose Paper. Paper beats Rock. You lose");
+                    computerWins++;
                 }else if (computerChoice == "paper" && userChoice == "scissors"){
-                    console.log("Computer chose Paper. Paper DOES NOT beat Scissors. You won");
+                   console.log("Computer chose Paper. Paper DOES NOT beat Scissors. You won");
+                   userWins++;
                 }else if (computerChoice == "scissors" && userChoice == "paper"){
                     console.log("Computer chose Scissors. Scissors beats paper. You lose.");
+                    computerWins++;
                 }else if (computerChoice == "scissors" && userChoice == "rock"){
-                    console.log("Computer chose Scissors. Scissors DOES NOT beat rock. You won!");
+                  console.log("Computer chose Scissors. Scissors DOES NOT beat rock. You won!");
+                  userWins++;
                 }else{
                     console.log("You input something that wasn't rock, paper, or scissors. Didn't you?");
-                } 
-                
-            }*/
+            }}
+
     </script>
 </body>
 </html>
